@@ -15,11 +15,13 @@ public class Deck {
                 deck.add(new Card(r, s));
             }
         }
-        //may need to make this a seperate method for printing out a deck of cards
-//        for (Card card : deck) {
-//            System.out.println(card);
-//        }
-		
+       
+	}
+	
+	public void printDeck(){
+		 for (Card card : deck) {
+	            System.out.println(card);
+	      }
 	}
 
 	public List<Card> getDeck() {
