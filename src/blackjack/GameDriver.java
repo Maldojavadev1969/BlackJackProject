@@ -2,11 +2,17 @@ package blackjack;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 
 public class GameDriver {
 
 	public static void main(String[] args) {
 		
+		Scanner kb = new Scanner(System.in);
+		System.out.println("Please enter your player name: ");
+		String newPlayerName = kb.next();
+		System.out.println("Here is the shuffled deck: ");
+
 		//instantiate dealer/player/hand class
 		Dealer newDealer = new Dealer();
 		Player newPlayer = new Player();
@@ -17,8 +23,7 @@ public class GameDriver {
 		newPlayer.addPlayerCard(newDealer.dealerGetCard());
 		newPlayer.addPlayerCard(newDealer.dealerGetCard());
 		
-		System.out.println("\nplayers hand\n");
-
+		System.out.println("\n" + newPlayerName + " hand\n");
 		
 		//now call print method from Hand class
 		thisHand.printHand(newPlayer);
@@ -41,7 +46,7 @@ public class GameDriver {
 	   
 		if(thisHand.handValue(newPlayer) == 21)
 		{
-			   System.out.println("Player one Wins: Black Jack!");
+			   System.out.println(newPlayerName + " Wins: Black Jack!");
 			   System.exit(0);
 	    }
 	    if(thisHand.handValue(playerIsDealer) == 21)
@@ -58,21 +63,36 @@ public class GameDriver {
 		//****************** game play to bust or win
 		
 	    //check value of player one's cards and if under 17 get another card until value of cards is greater than 17!
-		while(thisHand.handValue(newPlayer) <= 17){
+		//while(thisHand.handValue(newPlayer) <= 17){
 			//get another card!!
-			newPlayer.addPlayerCard(newDealer.dealerGetCard());
-			System.out.println("\nplayers hand\n");
-			thisHand.printHand(newPlayer);
+			System.out.println(newPlayerName + " hit or stay? ");
+			String userInput = kb.next();
+			while(userInput.equals("hit"))
+			{
+				if(userInput.equals("hit"))
+				{
+					newPlayer.addPlayerCard(newDealer.dealerGetCard());
+					System.out.println("\n" + newPlayerName + " hand\n");
+					thisHand.printHand(newPlayer);
+					if(thisHand.handValue(newPlayer) > 21)
+					{
+						System.out.println(newPlayerName +" loses: Bust!");
+						System.exit(0);
+					}
+				}
+				if(userInput.equals("stay"))
+				{
+					break;
+				}
+				System.out.println(newPlayerName + " hit or stay? ");
+				userInput = kb.next();
+				
+			}
 
 			//this will print the last card in the players hand
 			//System.out.println(newPlayer.getPlayerCard().get(newPlayer.getPlayerCard().size() -1) + " what's in here?");
-			if(thisHand.handValue(newPlayer) > 21){
-				System.out.println("Player one loses: Bust!");
-				System.exit(0);
-			}
-
-		}//end of while loop
-
+		    //System.exit(0);
+			
 		//*** player 2: the dealer at this moment!
 			while(thisHand.handValue(playerIsDealer) <= 17){
 					playerIsDealer.addPlayerCard(newDealer.dealerGetCard());
