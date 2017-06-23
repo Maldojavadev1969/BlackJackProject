@@ -45,9 +45,15 @@ public class Hand {
 		return TotalCardValues;
 	}
 	
-	public void printHand(Player x){
-		for (Card card : x.getPlayerCard()) {
-			System.out.println(card);
+	public void printHand(Player x, String type){
+		if(type.equals("ALL")){
+			for (Card card : x.getPlayerCard()) {
+				System.out.println(card);
+			}
+		}
+		else if (type.equals("ONE")){
+			System.out.println("[***HIDDEN***]");
+				System.out.println(x.getPlayerCard().get(0));
 		}
 	}
 	

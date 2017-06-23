@@ -26,7 +26,7 @@ public class GameDriver {
 		System.out.println("\n" + newPlayerName + " hand\n");
 		
 		//now call print method from Hand class
-		thisHand.printHand(newPlayer);
+		thisHand.printHand(newPlayer, "ALL");
 		//call handValue method and pass name of instantiated player to get total value of hand
 		System.out.println("total value of cards: " + thisHand.handValue(newPlayer));
 		 
@@ -38,7 +38,7 @@ public class GameDriver {
 	    System.out.println("\nDealer's hand\n");
 			
 			//now call print method from Hand class
-	   thisHand.printHand(playerIsDealer);
+	   thisHand.printHand(playerIsDealer, "ONE");
 			//call handValue method and pass name of instantiated player to get total value of hand
 		System.out.println("total value of cards: " + thisHand.handValue(playerIsDealer));
 
@@ -73,7 +73,7 @@ public class GameDriver {
 				{
 					newPlayer.addPlayerCard(newDealer.dealerGetCard());
 					System.out.println("\n" + newPlayerName + " hand\n");
-					thisHand.printHand(newPlayer);
+					thisHand.printHand(newPlayer, "ALL");
 					if(thisHand.handValue(newPlayer) > 21)
 					{
 						System.out.println(newPlayerName +" loses: Bust!");
@@ -97,7 +97,7 @@ public class GameDriver {
 			while(thisHand.handValue(playerIsDealer) <= 17){
 					playerIsDealer.addPlayerCard(newDealer.dealerGetCard());
 					System.out.println("\nDealers hand\n");
-					thisHand.printHand(playerIsDealer);
+					thisHand.printHand(playerIsDealer, "ALL");
 
 					if(thisHand.handValue(playerIsDealer) > 21){
 						//thisHand.printHand(playerIsDealer);
